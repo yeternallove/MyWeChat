@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">微信</string>
+
+    <string name="today">今天</string>
+    <string name="yesterday">昨天</string>
+    <string name="days_ago">{count} 天前</string>
+    <string name="weeks_ago">{count} 周前</string>
+    <string name="months_ago">{count} 月前</string>
+    <string name="years_ago">{count} 年前</string>
+    <string name="action_like">赞</string>
+    <string name="action_comment">评论</string>
+    <string name="bottom_Nav_item_1">微信</string>
+    <string name="bottom_Nav_item_2">通讯录</string>
+    <string name="bottom_Nav_item_3">发现</string>
+    <string name="bottom_Nav_item_4">我</string>
+</resources>

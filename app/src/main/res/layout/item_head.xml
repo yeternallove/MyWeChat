@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView_item_head_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_head_background_height"/>
+
+    <FrameLayout
+        android:id="@+id/frameLayout_item_head_avatar"
+        android:layout_width="@dimen/item_head_avatar_size"
+        android:layout_height="@dimen/item_head_avatar_size"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/item_head_avatar_margin_bottom"
+        android:layout_marginRight="@dimen/item_head_avatar_margin_right"
+        android:layout_marginTop="@dimen/item_head_avatar_margin_top"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imageView_item_head_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_head_avatar_inside_margin"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView_item_head_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView_item_head_background"
+        android:layout_marginBottom="@dimen/item_head_name_margin_bottom"
+        android:layout_marginRight="@dimen/item_head_name_margin_right"
+        android:layout_toStartOf="@+id/frameLayout_item_head_avatar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:text="SorcererXW"/>
+</RelativeLayout>

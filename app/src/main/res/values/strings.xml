@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WeChat</string>
+
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="days_ago">{count} days ago</string>
+    <string name="weeks_ago">{count} weeks ago</string>
+    <string name="months_ago">{count} months ago</string>
+    <string name="years_ago">{count} years ago</string>
+    <string name="action_like">Like</string>
+    <string name="action_comment">Comment</string>
+
+    <string name="bottom_Nav_item_1">Chats</string>
+    <string name="bottom_Nav_item_2">Contacts</string>
+    <string name="bottom_Nav_item_3">Discover</string>
+    <string name="bottom_Nav_item_4">Me</string>
+</resources>
