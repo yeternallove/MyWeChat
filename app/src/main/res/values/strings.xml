@@ -14,4 +14,6 @@
     <string name="bottom_Nav_item_2">Contacts</string>
     <string name="bottom_Nav_item_3">Discover</string>
     <string name="bottom_Nav_item_4">Me</string>
+
+    <string name="btn_moments_text">Moments</string>
 </resources>

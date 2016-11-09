@@ -9,8 +9,11 @@
     <string name="years_ago">{count} 年前</string>
     <string name="action_like">赞</string>
     <string name="action_comment">评论</string>
+
     <string name="bottom_Nav_item_1">微信</string>
     <string name="bottom_Nav_item_2">通讯录</string>
     <string name="bottom_Nav_item_3">发现</string>
     <string name="bottom_Nav_item_4">我</string>
+
+    <string name="btn_moments_text">朋友圈</string>
 </resources>

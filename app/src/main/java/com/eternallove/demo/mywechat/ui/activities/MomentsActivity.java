@@ -1,11 +1,13 @@
 package com.eternallove.demo.mywechat.ui.activities;
 
+import android.app.ActionBar;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.eternallove.demo.mywechat.R;
@@ -19,7 +21,7 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FriendCircleActivity extends AppCompatActivity {
+public class MomentsActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
@@ -27,7 +29,11 @@ public class FriendCircleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friendcircle);
+        setContentView(R.layout.activity_moments);
+        ActionBar actionBar = getActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         ButterKnife.bind(this);
 
         FriendCircleAdapter adapter = new FriendCircleAdapter(this,
@@ -90,12 +96,23 @@ public class FriendCircleActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_actionbar_moments, menu);
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                final View v = FriendCircleActivity.this.findViewById(R.id.action_comment_camera);
+                final View v = MomentsActivity.this.findViewById(R.id.action_comment_camera);
                 if (v != null) {
                     v.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
