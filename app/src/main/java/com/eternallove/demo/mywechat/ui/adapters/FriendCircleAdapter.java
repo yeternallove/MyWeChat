@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eternallove.demo.mywechat.R;
-import com.eternallove.demo.mywechat.modles.GeneralBean;
-import com.eternallove.demo.mywechat.modles.HeadBean;
+import com.eternallove.demo.mywechat.modle.GeneralBean;
+import com.eternallove.demo.mywechat.modle.HeadBean;
 import com.eternallove.demo.mywechat.util.DateUtil;
 
 import java.util.List;

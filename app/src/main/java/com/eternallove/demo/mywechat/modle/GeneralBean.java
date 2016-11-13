@@ -1,4 +1,4 @@
-package com.eternallove.demo.mywechat.modles;
+package com.eternallove.demo.mywechat.modle;
 
 import java.util.Date;
 import java.util.List;

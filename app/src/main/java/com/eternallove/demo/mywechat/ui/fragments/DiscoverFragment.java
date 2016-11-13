@@ -35,9 +35,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_moments:
-                Intent intent=new Intent();
-                intent.setClass(getActivity(),MomentsActivity.class);
-                startActivity(intent);
+                MomentsActivity.actionStart(getActivity());
                 break;
         }
     }

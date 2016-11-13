@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">WeChat</string>
+    <string name="btn_moments_text">Moments</string>
+    <string name="title_activity_login">Sign in</string>
 
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
@@ -10,10 +12,24 @@
     <string name="action_like">Like</string>
     <string name="action_comment">Comment</string>
 
+    <string name="checkBox_remember_pass">remember pass</string>
     <string name="bottom_Nav_item_1">Chats</string>
     <string name="bottom_Nav_item_2">Contacts</string>
     <string name="bottom_Nav_item_3">Discover</string>
     <string name="bottom_Nav_item_4">Me</string>
 
-    <string name="btn_moments_text">Moments</string>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

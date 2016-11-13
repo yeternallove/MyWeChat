@@ -1,6 +1,8 @@
 package com.eternallove.demo.mywechat.ui.activities;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.eternallove.demo.mywechat.R;
-import com.eternallove.demo.mywechat.modles.GeneralBean;
-import com.eternallove.demo.mywechat.modles.HeadBean;
+import com.eternallove.demo.mywechat.modle.GeneralBean;
+import com.eternallove.demo.mywechat.modle.HeadBean;
 import com.eternallove.demo.mywechat.ui.adapters.FriendCircleAdapter;
 
 import java.util.Arrays;
@@ -25,7 +27,11 @@ public class MomentsActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
+    public static void actionStart(Context context){
+        Intent intent=new Intent();
+        intent.setClass(context,MomentsActivity.class);
+        context.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
