@@ -30,8 +30,8 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * @author: eternallove
  * @date: 2016/11/7
  */
-public class FriendCircleAdapter
-        extends RecyclerView.Adapter<FriendCircleAdapter.FriendCircleViewHolder> {
+public class MomentAdapter
+        extends RecyclerView.Adapter<MomentAdapter.FriendCircleViewHolder> {
 
     private static final int TYPE_HEAD = 0x0;
     private static final int TYPE_GENERAL = 0x1;
@@ -41,9 +41,9 @@ public class FriendCircleAdapter
 
     private Context mContext;
 
-    public FriendCircleAdapter(Context context,
-                               HeadBean headBean,
-                               List<GeneralBean> generalBeanList) {
+    public MomentAdapter(Context context,
+                         HeadBean headBean,
+                         List<GeneralBean> generalBeanList) {
         mHeadBean = headBean;
         mGeneralBeanList = generalBeanList;
         mContext = context;

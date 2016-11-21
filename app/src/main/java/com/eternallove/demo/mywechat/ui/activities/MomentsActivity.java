@@ -15,7 +15,7 @@ import android.view.View;
 import com.eternallove.demo.mywechat.R;
 import com.eternallove.demo.mywechat.modle.GeneralBean;
 import com.eternallove.demo.mywechat.modle.HeadBean;
-import com.eternallove.demo.mywechat.ui.adapters.FriendCircleAdapter;
+import com.eternallove.demo.mywechat.ui.adapters.MomentAdapter;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -42,7 +42,7 @@ public class MomentsActivity extends AppCompatActivity {
         }
         ButterKnife.bind(this);
 
-        FriendCircleAdapter adapter = new FriendCircleAdapter(this,
+        MomentAdapter adapter = new MomentAdapter(this,
                 new HeadBean(
                         "http://img0.imgtn.bdimg.com/it/u=2075776712,3107953298&fm=21&gp=0.jpg",
                         "http://wenwen.soso.com/p/20110814/20110814160542-1916500023.jpg",

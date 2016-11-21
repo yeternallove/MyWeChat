@@ -60,7 +60,7 @@
 
                 <ImageView
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/icon_comment"
+                    android:src="@drawable/ic_tab_comment"
                     android:scaleType="fitXY"
                     android:id="@+id/imageButton_item_general_comment"
                     android:layout_marginRight="@dimen/item_general_comment_button_margin_right"

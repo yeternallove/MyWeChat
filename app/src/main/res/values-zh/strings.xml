@@ -25,5 +25,5 @@
     <string name="prompt_email">邮箱</string>
     <string name="title_activity_login">登录</string>
     <string name="prompt_password">密码（可不填）</string>
-    <string name="error_field_required">该信息已被注册</string>
+    <string name="error_field_required">这里有个小错误</string>
 </resources>

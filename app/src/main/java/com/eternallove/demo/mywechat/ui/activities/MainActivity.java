@@ -2,6 +2,7 @@ package com.eternallove.demo.mywechat.ui.activities;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setOverflowShowingAlways();
-        LoginActivity.actionStart(this);
+        int mId=PreferenceManager.getDefaultSharedPreferences(this).getInt("mId",-1);
+        if(mId == -1){
+            LoginActivity.actionStart(this);
+        }
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.framelayout_main,new ContactsFragment())

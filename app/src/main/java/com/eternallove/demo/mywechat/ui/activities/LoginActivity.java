@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.eternallove.demo.mywechat.R;
+import com.eternallove.demo.mywechat.modle.UserBean;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -52,12 +53,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
+    public  static UserBean user = null;
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "31401317@zucc.edu.cn:123456", "yeternallove@163.com:123456"
+            "31401317@stu.zucc.edu.cn:123456", "yeternallove@163.com:123456"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -121,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             editor.putBoolean("remember_Password",true);
                             editor.putString("mEmail",mEmail);
                             editor.putString("mPassword",mPassword);
+                            editor.putInt("mId",0);
                         }
                         else{
                             editor.clear();

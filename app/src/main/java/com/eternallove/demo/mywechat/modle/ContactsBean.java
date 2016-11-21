@@ -3,7 +3,7 @@ package com.eternallove.demo.mywechat.modle;
 /**
  * @description:
  * @author: eternallove
- * @date: 2016/11/14
+ * @date: 2016/11/20
  */
-public class CommentsBean {
+public class ContactsBean {
 }

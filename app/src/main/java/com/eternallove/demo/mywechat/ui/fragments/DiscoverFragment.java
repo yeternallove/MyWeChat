@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * @author: eternallove
  * @date: 2016/11/8
  */
-public class DiscoverFragment extends Fragment implements View.OnClickListener {
+public class DiscoverFragment extends Fragment implements View.OnClickListener{
     @BindView(R.id.btn_moments)
     Button btn_moments;
 

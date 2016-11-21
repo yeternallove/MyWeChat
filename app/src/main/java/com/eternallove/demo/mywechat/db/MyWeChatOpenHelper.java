@@ -11,39 +11,31 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MyWeChatOpenHelper extends SQLiteOpenHelper {
     /**
+     *个人信息
+     */
+    public static final String CREATE_USER = "create table User("
+            + "id integer primary key autoincrement,"
+            + "account text,"
+            + "password text,"
+            + "data text,"
+            + "contacts text)";
+    /**
      * 朋友圈
      */
     public static final String CREATE_MOMENT = "create table Moment("
             + "id integer primary key autoincrement,"
             + "user_id integer,"
-            + "Content text,"
-            + "RE_id integer)";
-//            + "FOREIGN KEY(RE_id) REFERENCES Reference(id)";
-    /**
-     * 引用
-     */
-    public static final String CREATE_REFERENCE = "create table Reference("
-            + "id integer primary key autoincrement,"
-            + "moment_id integer,"
-            + "is_picture blob,"
-            + "link text)";
-    /**
-     * 点赞
-     */
-    public static final String CREATE_LIKE = "create table Like("
-            + "id integer primary key autoincrement,"
-            + "moment_id integer,"
-            + "initiator_id integer,"
-            + "recipient_id integer)";
-    /**
-     * 评论
-     */
-    public static final String CREATE_COMMENTS = "create table Comments("
-            + "id integer primary key autoincrement,"
-            + "moment_id integer,"
-            + "initiator_id integer,"
-            + "recipient_id integer,"
-            + "reply text)";
+            + "content text)";
+    public static  final String CREATE_CONTACTS = "create table Content("
+            + "id text primary key,"
+            + "user_id integer,"
+            + "name text,"
+            + "email text,"
+            + "address text,"
+            + "gender text,"
+            + "mobile text,"
+            + "home text,"
+            + "office text)";
     public MyWeChatOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -51,17 +43,15 @@ public class MyWeChatOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_MOMENT);
-        db.execSQL(CREATE_REFERENCE);
-        db.execSQL(CREATE_LIKE);
-        db.execSQL(CREATE_COMMENTS);
+        db.execSQL(CREATE_USER);
+        db.execSQL(CREATE_CONTACTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists Moment");
-        db.execSQL("drop table if exists Reference");
-        db.execSQL("drop table if exists Like");
-        db.execSQL("drop table if exists Comments");
+        db.execSQL("drop table if exists User");
+        db.execSQL("drop table if exists Content");
         onCreate(db);
     }
 }

@@ -3,21 +3,21 @@
     <!--<item-->
         <!--android:id="@+id/bottom_Nav_item_1"-->
         <!--android:checked="true"-->
-        <!--android:icon="@drawable/icon_wechatqp"-->
+        <!--android:icon="@drawable/ic_tab_chats"-->
         <!--android:title="@string/bottom_Nav_item_1"/>-->
 
     <item
         android:id="@+id/bottom_Nav_item_2"
         android:checked="true"
-        android:icon="@drawable/icon_addressbook"
+        android:icon="@drawable/ic_tab_contact"
         android:title="@string/bottom_Nav_item_2"/>
 
     <item
         android:id="@+id/bottom_Nav_item_3"
-        android:icon="@drawable/icon_found"
+        android:icon="@drawable/ic_tab_discover"
         android:title="@string/bottom_Nav_item_3"/>
     <!--<item-->
         <!--android:id="@+id/bottom_Nav_item_4"-->
-        <!--android:icon="@drawable/icon_me"-->
+        <!--android:icon="@drawable/ic_me"-->
         <!--android:title="@string/bottom_Nav_item_4"/>-->
 </menu>
