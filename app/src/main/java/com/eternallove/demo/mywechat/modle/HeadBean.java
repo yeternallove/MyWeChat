@@ -10,6 +10,7 @@ public class HeadBean {
     private String mHeadAvatar;
     private String mHeadName;
 
+    public HeadBean(){};
     public HeadBean(String headBackground, String headAvatar, String headName) {
         mHeadBackground = headBackground;
         mHeadAvatar = headAvatar;

@@ -26,6 +26,17 @@ public class MyWeChatOpenHelper extends SQLiteOpenHelper {
             + "id integer primary key autoincrement,"
             + "user_id integer,"
             + "content text)";
+    public static final String CREATE_LIKE = "create table Like("
+            + "id integer primary key autoincrement,"
+            + "moment_id integer,"
+            + "initiator_id integer,"
+            + "recipient_id integer)";
+    public static final String CREATE_COMMENT = "create table Comment("
+            + "id integer primary key autoincrement,"
+            + "moment_id integer,"
+            + "initiator_id integer,"
+            + "recipient_id integer,"
+            + "content text)";
     public static  final String CREATE_CONTACTS = "create table Content("
             + "id text primary key,"
             + "user_id integer,"
@@ -44,12 +55,16 @@ public class MyWeChatOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_MOMENT);
         db.execSQL(CREATE_USER);
+        db.execSQL(CREATE_LIKE);
+        db.execSQL(CREATE_COMMENT);
         db.execSQL(CREATE_CONTACTS);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("drop table if exists Moment");
+        db.execSQL("drop table if exists Like");
+        db.execSQL("drop table if exists Comment");
         db.execSQL("drop table if exists User");
         db.execSQL("drop table if exists Content");
         onCreate(db);

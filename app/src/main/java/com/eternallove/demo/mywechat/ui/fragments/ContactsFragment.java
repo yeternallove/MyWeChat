@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.eternallove.demo.mywechat.R;
 import com.eternallove.demo.mywechat.db.MyWeChatDB;
+import com.eternallove.demo.mywechat.modle.ContactsBean;
 import com.eternallove.demo.mywechat.util.HttpHandler;
 
 import org.json.JSONArray;
@@ -42,7 +43,7 @@ public class ContactsFragment extends Fragment {
     private static String url = "http://api.androidhive.info/contacts/";
 
     ArrayList<HashMap<String, String>> contactList;
-
+    private MyWeChatDB myWeChatDB;
     @BindView(R.id.list_view)
     ListView lv;
     @Override
@@ -73,54 +74,56 @@ public class ContactsFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-
+            myWeChatDB = MyWeChatDB.getInstance(getActivity());
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
+//            String jsonStr = sh.makeServiceCall(url);
 
-            Log.e(TAG, "Response from url: " + jsonStr);
-
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    // Getting JSON Array node
-                    JSONArray contacts = jsonObj.getJSONArray("contacts");
-
-                    // looping through All Contacts
-                    for (int i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-
-                        String id = c.getString("id");
-                        String name = c.getString("name");
-                        String email = c.getString("email");
-                        String address = c.getString("address");
-                        String gender = c.getString("gender");
-
-                        // Phone node is JSON Object
-                        JSONObject phone = c.getJSONObject("phone");
-                        String mobile = phone.getString("mobile");
-                        String home = phone.getString("home");
-                        String office = phone.getString("office");
-                        //adding each child node to SQLite
-                        MyWeChatDB.getInstance(getActivity()).saveContent(id,0,name,email,address,gender,mobile,home,office);
-                        // tmp hash map for single contact
-                        HashMap<String, String> contact = new HashMap<>();
-
-                        // adding each child node to HashMap key => value
-                        contact.put("id", id);
-                        contact.put("name", name);
-                        contact.put("email", email);
-                        contact.put("mobile", mobile);
-
-                        // adding contact to contact list
-                        contactList.add(contact);
-                    }
-                } catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                }
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
-            }
+//            Log.e(TAG, "Response from url: " + jsonStr);
+//
+//            if (jsonStr != null) {
+//                try {
+//                    JSONObject jsonObj = new JSONObject(jsonStr);
+//
+//                    // Getting JSON Array node
+//                    JSONArray contacts = jsonObj.getJSONArray("contacts");
+//
+//                    // looping through All Contacts
+//                    for (int i = 0; i < contacts.length(); i++) {
+//                        JSONObject c = contacts.getJSONObject(i);
+//
+//                        String id = c.getString("id");
+//                        String name = c.getString("name");
+//                        String email = c.getString("email");
+//                        String address = c.getString("address");
+//                        String gender = c.getString("gender");
+//
+//                        // Phone node is JSON Object
+//                        JSONObject phone = c.getJSONObject("phone");
+//                        String mobile = phone.getString("mobile");
+//                        String home = phone.getString("home");
+//                        String office = phone.getString("office");
+//                        //adding each child node to SQLite
+//                        myWeChatDB.saveContent(id,0,name,email,address,gender,mobile,home,office);
+//                    }
+//                } catch (final JSONException e) {
+//                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+//                }
+//            } else {
+//                Log.e(TAG, "Couldn't get json from server.");
+//            }
+//            // tmp hash map for single contact
+//            HashMap<String, String> contact = new HashMap<>();
+//            ArrayList<ContactsBean> contactlist;
+//            contactlist = myWeChatDB.selectContacts();
+//            // adding each child node to HashMap key => value
+//            for( int i = 0; i < contactlist.size() ; i++ ) {
+//                contact.put("id", contactlist.get(i).getId());
+//                contact.put("name", contactlist.get(i).getName());
+//                contact.put("email", contactlist.get(i).getEmail());
+//                contact.put("mobile", contactlist.get(i).getMobile());
+//                // adding contact to contact list
+//                contactList.add(contact);
+//            }
             return null;
         }
 

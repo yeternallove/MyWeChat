@@ -16,8 +16,8 @@
         android:id="@+id/bottom_Nav_item_3"
         android:icon="@drawable/ic_tab_discover"
         android:title="@string/bottom_Nav_item_3"/>
-    <!--<item-->
-        <!--android:id="@+id/bottom_Nav_item_4"-->
-        <!--android:icon="@drawable/ic_me"-->
-        <!--android:title="@string/bottom_Nav_item_4"/>-->
+    <item
+        android:id="@+id/bottom_Nav_item_4"
+        android:icon="@drawable/ic_me"
+        android:title="@string/bottom_Nav_item_4"/>
 </menu>

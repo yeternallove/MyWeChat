@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_margin="@dimen/item_general_frame_margin"
@@ -27,7 +27,7 @@
             <TextView
                 android:textColor="@color/colorGeneralName"
                 android:layout_marginBottom="@dimen/item_general_name_margin_bottom"
-                tools:text="SorcererXW"
+                tools:text="eternallove"
                 android:id="@+id/textView_item_general_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -39,6 +39,30 @@
                 tools:text="This is a demo of friend circle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_item_link_content"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_general_content_link_layout_height"
+                android:background="@color/background"
+                android:padding="@dimen/item_general_content_link_layout_padding"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/item_general_content_link_layout_marginTop">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="作为一个连接标题，我也是有原则的"
+                    android:id="@+id/textview_item_link_title"
+                    android:paddingLeft="@dimen/item_general_content_link_layout_padding"
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="@dimen/item_general_content_link_image_SideLength"
+                    android:layout_height="@dimen/item_general_content_link_image_SideLength"
+                    android:id="@+id/imageView_item_link_img"/>
+            </LinearLayout>
 
             <GridLayout
                 android:layout_marginBottom="@dimen/item_general_image_grid_image_margin_bottom"
@@ -67,6 +91,30 @@
                     android:layout_width="@dimen/item_general_comment_button_size_wight"
                     android:layout_height="@dimen/item_general_comment_button_size_height" />
             </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_moment_comment_comment"
+                android:orientation="vertical"
+                android:id="@+id/linearlayout_likeOrComment"
+                android:padding="5dp"
+                android:visibility="gone">
+                <com.eternallove.demo.mywechat.modle.AutoWrapLineLayout
+                    android:id="@+id/autoWrapLineLayout_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:verticalGap="1dp"
+                    tools:horizontalGap="1dp"
+                    android:layout_marginTop="15dp">
+                </com.eternallove.demo.mywechat.modle.AutoWrapLineLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearlayout_comment"></LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

@@ -26,8 +26,7 @@
         </activity>
         <activity
             android:name=".ui.activities.MomentsActivity"
-            android:label="@string/btn_moments_text"
-            android:parentActivityName=".ui.activities.MainActivity">
+            android:label="@string/btn_moments_text">
         </activity>
 
         <activity

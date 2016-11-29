@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发起者"
+            android:id="@+id/textView_item_general_comment_initiatorName"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/colorTextName"
+            android:textSize="@dimen/item_general_comment_text_size" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comment_reply"
+            android:id="@+id/textView_item_general_comment_1"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/item_general_comment_text_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="接受者"
+            android:id="@+id/textView_item_general_comment_recipientName"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/colorTextName"
+            android:textSize="@dimen/item_general_comment_text_size" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:id="@+id/textView_item_general_comment_2"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/item_general_comment_text_size"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这个赞"
+            android:id="@+id/textView_item_general_comment_content"
+            android:textSize="@dimen/item_general_comment_text_size"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</LinearLayout>

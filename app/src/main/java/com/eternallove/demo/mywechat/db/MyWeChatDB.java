@@ -4,6 +4,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.eternallove.demo.mywechat.modle.ContactsBean;
+import com.eternallove.demo.mywechat.modle.GeneralBean;
+import com.eternallove.demo.mywechat.modle.HeadBean;
+
+import java.util.ArrayList;
+
 /**
  * @description:
  * @author: eternallove
@@ -37,5 +43,28 @@ public class MyWeChatDB {
         Cursor c = db.rawQuery("select * from Content where id = ?",new String[]{id});
        if(c.moveToFirst()) return;
         db.execSQL("INSERT INTO Content(id,user_id,name,email,mobile) VALUES(?,?,?,?,?)",new Object[]{id,user_id,name,email,mobile});
+    }
+    public ArrayList<ContactsBean> selectContacts(){
+        ArrayList<ContactsBean> contactlist = new ArrayList<>();
+        ContactsBean contact;
+        Cursor c = db.rawQuery("select id,name,email,mobile from Content where user_id = ?",new String[]{0+""});
+        while(c.moveToNext())
+        {
+            contact = new ContactsBean();
+            contact.setId(c.getString(0));
+            contact.setName(c.getString(1));
+            contact.setEmail(c.getString(2));
+            contact.setMobile(c.getString(3));
+            contactlist.add(contact);
+        }
+        return contactlist;
+    }
+    public HeadBean refreshHead(){
+        HeadBean headBean = new HeadBean();
+        return headBean;
+    }
+    public ArrayList<GeneralBean> refreshGeneral(){
+        ArrayList<GeneralBean> momentlist = new ArrayList<>();
+        return momentlist;
     }
 }

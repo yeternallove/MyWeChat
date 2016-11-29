@@ -1,6 +1,5 @@
 package com.eternallove.demo.mywechat.ui.activities;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -13,8 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.eternallove.demo.mywechat.R;
+import com.eternallove.demo.mywechat.modle.CommentBean;
 import com.eternallove.demo.mywechat.modle.GeneralBean;
 import com.eternallove.demo.mywechat.modle.HeadBean;
+import com.eternallove.demo.mywechat.modle.LikeBean;
+import com.eternallove.demo.mywechat.modle.LinkBean;
 import com.eternallove.demo.mywechat.ui.adapters.MomentAdapter;
 
 import java.util.Arrays;
@@ -36,10 +38,8 @@ public class MomentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moments);
-        ActionBar actionBar = getActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
 
         MomentAdapter adapter = new MomentAdapter(this,
@@ -52,46 +52,137 @@ public class MomentsActivity extends AppCompatActivity {
                                 "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
                                 "cxf",
                                 "lala",
+                                null,
                                 Arrays.asList(
                                         "http://img0w.pconline.com.cn/pconline/1309/11/3464151_26.jpg"
+                                ),
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                        "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                        "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                        "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                        "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                new LinkBean("https://www.baidu.com/",
+                                        "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                        "百度"),
+                                null,
+                                null,
+                                null,
+                                new Date(System.currentTimeMillis() - 2000000000)),
+                        new GeneralBean(
+                                "http://img0w.pconline.com.cn/pconline/1309/11/3464151_25.jpg",
+                                "cxf",
+                                "lala",
+                                null,
+                                null,
+                                Arrays.asList(
+                                    new LikeBean("zzz"), new LikeBean("aaa"),new LikeBean("111111111111111")
+                                ),
+                                Arrays.asList(
+                                        new CommentBean("zzz","aaa","测试"),new CommentBean("zzz",null,"what?")
                                 ),
                                 new Date(System.currentTimeMillis() - 2000000000)),
                         new GeneralBean(
                                 "http://img0w.pconline.com.cn/pconline/1309/11/3464151_26.jpg",
                                 "DJ",
                                 "lala",
+                                null,
                                 Arrays.asList(
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108",
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108"
+                                        "http://img15.3lian.com/2015/c1/83/d/39.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/30.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/30.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/30.jpg"
                                 ),
+                                null,
+                                null,
                                 new Date()),
                         new GeneralBean(
                                 "http://img0w.pconline.com.cn/pconline/1309/11/3464151_26.jpg",
                                 "DJ",
                                 "lala",
+                                null,
                                 Arrays.asList(
                                         "https://s-media-cache-ak0.pinimg.com/564x/a7/7c/11/a77c11589d8be49f9bad3cd52778a176.jpg",
                                         "http://uupaper.oss-cn-qingdao.aliyuncs.com/b6eee5a620d6e14f4f8e5786f24244f7.jpeg",
                                         "http://uupaper.oss-cn-qingdao.aliyuncs.com/b6eee5a620d6e14f4f8e5786f24244f7.jpeg"
                                 ),
+                                null,
+                                null,
                                 new Date()),
                         new GeneralBean(
                                 "http://img0w.pconline.com.cn/pconline/1309/11/3464151_26.jpg",
                                 "DJ",
                                 "lala",
+                                null,
                                 Arrays.asList(
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108",
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108",
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108",
-                                        "http://p2.gexing.com/G1/M00/BE/E8/rBACFFP5O-_C8g25AAAcHiXXCRw039_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108",
-                                        "http://p1.gexing.com/G1/M00/BE/E8/rBACFFP5O-_Bc-NsAAAdxGiqf-I588_200x200_3.jpg?recache=20131108"
+                                        "http://img15.3lian.com/2015/c1/83/d/30.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/31.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/31.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/31.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/31.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/31.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/32.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/32.jpg",
+                                        "http://img15.3lian.com/2015/c1/83/d/32.jpg"
                                 ),
+                                null,
+                                null,
                                 new Date())
 
                 ));
@@ -104,7 +195,7 @@ public class MomentsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 finish();
                 return true;
             default:

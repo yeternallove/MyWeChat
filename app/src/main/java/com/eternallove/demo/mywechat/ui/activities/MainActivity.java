@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.eternallove.demo.mywechat.R;
 import com.eternallove.demo.mywechat.ui.fragments.ContactsFragment;
 import com.eternallove.demo.mywechat.ui.fragments.DiscoverFragment;
+import com.eternallove.demo.mywechat.ui.fragments.MeFragment;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -58,13 +60,17 @@ public class MainActivity extends AppCompatActivity {
                                 .commit();
                         break;
                     case R.id.bottom_Nav_item_3:
-                        DiscoverFragment disfrgm =new DiscoverFragment();
+                        DiscoverFragment disfrgm = new DiscoverFragment();
                         fm.beginTransaction()
                                 .replace(R.id.framelayout_main,disfrgm)
                                 .commit();
                         break;
-//                    case R.id.bottom_Nav_item_4:
-//                        break;
+                    case R.id.bottom_Nav_item_4:
+                        MeFragment mefrgm = new MeFragment();
+                        fm.beginTransaction()
+                                .replace(R.id.framelayout_main,mefrgm)
+                                .commit();
+                        break;
                     default:
                         break;
                 }

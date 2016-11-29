@@ -7,6 +7,7 @@
     <string name="weeks_ago">{count} 周前</string>
     <string name="months_ago">{count} 月前</string>
     <string name="years_ago">{count} 年前</string>
+    <string name="comment_reply"> 回复</string>
     <string name="action_like">赞</string>
     <string name="action_comment">评论</string>
 
