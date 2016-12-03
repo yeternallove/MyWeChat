@@ -5,6 +5,8 @@
 
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
+    <string name="minutes_ago">{count} minutes ago</string>
+    <string name="hours_ago">{count} hours ago</string>
     <string name="days_ago">{count} days ago</string>
     <string name="weeks_ago">{count} weeks ago</string>
     <string name="months_ago">{count} months ago</string>

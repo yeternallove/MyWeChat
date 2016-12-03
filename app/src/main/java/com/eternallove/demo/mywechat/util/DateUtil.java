@@ -12,7 +12,9 @@ import java.util.Date;
  * @date: 2016/11/7
  */
 public class DateUtil {
-    private static final long DAY = 1000 * 60 * 60 * 24;
+    private static final long MINUTE = 1000 * 60;
+    private static final long HOUR = MINUTE * 60;
+    private static final long DAY = HOUR * 24;
     private static final long WEEK = DAY * 7;
     private static final long MONTH = DAY * 30;
     private static final long YEAR = DAY * 365;
@@ -27,7 +29,13 @@ public class DateUtil {
         long now = new Date().getTime();
         long offset = now - last;
         if (offset <= DAY) {
-            return context.getString(R.string.today);
+            if(offset <= HOUR){
+                return context.getString(R.string.minutes_ago)
+                        .replace(COUNT_REPLACEMENT, String.valueOf(offset / MINUTE));
+            } else{
+                return context.getString(R.string.hours_ago)
+                        .replace(COUNT_REPLACEMENT, String.valueOf(offset / HOUR));
+            }
         } else if (offset <= DAY * 2) {
             return context.getString(R.string.yesterday);
         } else if (offset <= WEEK) {

@@ -28,14 +28,11 @@ import com.eternallove.demo.mywechat.modle.LikeBean;
 import com.eternallove.demo.mywechat.modle.LinkBean;
 import com.eternallove.demo.mywechat.util.DateUtil;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.R.attr.data;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
@@ -82,7 +79,16 @@ public class MomentAdapter
     public void onBindViewHolder(FriendCircleViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
             HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-            this.onBindHeadViewHolder(headViewHolder);
+            Glide.with(mContext)
+                    .load(mHeadBean.getHeadAvatar())
+                    .placeholder(R.color.colorImagePlaceHolder)
+                    .into(headViewHolder.avatar);
+            Glide.with(mContext)
+                    .load(mHeadBean.getHeadBackground())
+                    .centerCrop()
+                    .placeholder(R.color.colorImagePlaceHolder)
+                    .into(headViewHolder.background);
+            headViewHolder.name.setText(mHeadBean.getHeadName());
         } else {
             GeneralViewHolder generalViewHolder = (GeneralViewHolder) holder;
             GeneralBean generalBean = mGeneralBeanList.get(position - 1);
@@ -104,6 +110,7 @@ public class MomentAdapter
                 final LinkBean linkData = generalBean.getLinkData();
                 Glide.with(mContext)
                         .load(linkData.getLinkimg())
+                        .centerCrop()
                         .placeholder(R.color.colorImagePlaceHolder)
                         .into(generalViewHolder.linkimg);
                 generalViewHolder.linkTitle.setText(linkData.getLinktitle());
@@ -119,7 +126,94 @@ public class MomentAdapter
             }
             //填充用户发布图片信息
             if (generalBean.getImageList() != null && generalBean.getImageList().size() > 0) {
-                this.onBindGeneralImgViewHolder(generalViewHolder,generalBean);
+                List<String> imageList = generalBean.getImageList();
+                generalViewHolder.gridLayout.removeAllViews();
+
+                int size = imageList.size();
+                int rowCount = (int) Math.sqrt(size);
+                int columnCount = size / rowCount;
+
+                int k = 0;
+                for (int i = 0; i < rowCount; i++) {
+                    for (int j = 0; j < columnCount; j++) {
+                        if (k >= size || k >= 9) {
+                            // 超过总数
+                            break;
+                        }
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
+                        layoutParams.setGravity(Gravity.CENTER);
+                        layoutParams.rowSpec = GridLayout.spec(i);
+                        layoutParams.columnSpec = GridLayout.spec(j);
+
+                        if (size == 1) {
+                            // 如果只有一张就完整显示
+                            layoutParams.width = WRAP_CONTENT;
+                            layoutParams.height = WRAP_CONTENT;
+
+                            ImageView imageView = new ImageView(mContext);
+                            imageView.setMinimumHeight((int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_size));
+                            imageView.setMinimumWidth((int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_size));
+
+                            imageView.setLayoutParams(layoutParams);
+                            generalViewHolder.gridLayout.addView(imageView);
+
+                            final int maxWidth = (int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_max_width);
+
+                            Glide.with(mContext)
+                                    .load(imageList.get(k))
+                                    .asBitmap()
+                                    .transform(new Transformation<Bitmap>() {
+                                        @Override
+                                        public Resource<Bitmap> transform(Resource<Bitmap> resource,
+                                                                          int outWidth,
+                                                                          int outHeight) {
+                                            int height = resource.get().getHeight();
+                                            int width = resource.get().getWidth();
+                                            if (width > maxWidth) {
+                                                int time = width / maxWidth;
+                                                width /= time;
+                                                height /= time;
+                                            }
+                                            Bitmap resizedBitmap = Bitmap.createScaledBitmap(
+                                                    resource.get(), width, height, false);
+
+                                            return new SimpleResource<>(resizedBitmap);
+                                        }
+
+                                        @Override
+                                        public String getId() {
+                                            return "";
+                                        }
+                                    })
+                                    .placeholder(R.color.colorImagePlaceHolder)
+                                    .into(imageView);
+                        } else {
+                            // 否则就显示为一个方块
+                            layoutParams.width = (int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_size);
+                            layoutParams.height = (int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_size);
+
+                            int margin = (int) mContext.getResources()
+                                    .getDimension(R.dimen.item_general_image_grid_image_margin);
+                            layoutParams.setMargins(margin, margin, margin, margin);
+
+                            ImageView imageView = new ImageView(mContext);
+                            imageView.setLayoutParams(layoutParams);
+                            generalViewHolder.gridLayout.addView(imageView);
+
+                            Glide.with(mContext)
+                                    .load(imageList.get(k))
+                                    .placeholder(R.color.colorImagePlaceHolder)
+                                    .centerCrop()
+                                    .into(imageView);
+                        }
+                        k++;
+                    }
+                }
                 generalViewHolder.gridLayout.setVisibility(View.VISIBLE);
             } else {
                 generalViewHolder.gridLayout.setVisibility(View.GONE);
@@ -183,111 +277,6 @@ public class MomentAdapter
         return mGeneralBeanList.size() + 1;
     }
 
-    private void onBindHeadViewHolder(HeadViewHolder headViewHolder){
-        Glide.with(mContext)
-                .load(mHeadBean.getHeadAvatar())
-                .placeholder(R.color.colorImagePlaceHolder)
-                .into(headViewHolder.avatar);
-        Glide.with(mContext)
-                .load(mHeadBean.getHeadBackground())
-                .centerCrop()
-                .placeholder(R.color.colorImagePlaceHolder)
-                .into(headViewHolder.background);
-        headViewHolder.name.setText(mHeadBean.getHeadName());
-    }
-
-    private void onBindGeneralImgViewHolder(GeneralViewHolder generalViewHolder,GeneralBean generalBean){
-        List<String> imageList = generalBean.getImageList();
-
-        int size = imageList.size();
-        int rowCount = (int) Math.sqrt(size);
-        int columnCount = size / rowCount;
-
-        generalViewHolder.gridLayout.setRowCount(rowCount);
-        generalViewHolder.gridLayout.setColumnCount(columnCount);
-
-        int k = 0;
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < columnCount; j++) {
-                if (k >= size || k >= 9) {
-                    // 超过总数
-                    break;
-                }
-                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
-                layoutParams.setGravity(Gravity.CENTER);
-                layoutParams.rowSpec = GridLayout.spec(i);
-                layoutParams.columnSpec = GridLayout.spec(j);
-
-                if (size == 1) {
-                    // 如果只有一张就完整显示
-                    layoutParams.width = WRAP_CONTENT;
-                    layoutParams.height = WRAP_CONTENT;
-
-                    ImageView imageView = new ImageView(mContext);
-                    imageView.setMinimumHeight((int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_size));
-                    imageView.setMinimumWidth((int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_size));
-
-                    imageView.setLayoutParams(layoutParams);
-                    generalViewHolder.gridLayout.addView(imageView);
-
-                    final int maxWidth = (int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_max_width);
-
-                    Glide.with(mContext)
-                            .load(imageList.get(k))
-                            .asBitmap()
-                            .transform(new Transformation<Bitmap>() {
-                                @Override
-                                public Resource<Bitmap> transform(Resource<Bitmap> resource,
-                                                                  int outWidth,
-                                                                  int outHeight) {
-                                    int height = resource.get().getHeight();
-                                    int width = resource.get().getWidth();
-                                    if (width > maxWidth) {
-                                        int time = width / maxWidth;
-                                        width /= time;
-                                        height /= time;
-                                    }
-                                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(
-                                            resource.get(), width, height, false);
-
-                                    return new SimpleResource<>(resizedBitmap);
-                                }
-
-                                @Override
-                                public String getId() {
-                                    return "";
-                                }
-                            })
-                            .placeholder(R.color.colorImagePlaceHolder)
-                            .into(imageView);
-                } else {
-                    // 否则就显示为一个方块
-                    layoutParams.width = (int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_size);
-                    layoutParams.height = (int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_size);
-
-                    int margin = (int) mContext.getResources()
-                            .getDimension(R.dimen.item_general_image_grid_image_margin);
-                    layoutParams.setMargins(margin, margin, margin, margin);
-
-                    ImageView imageView = new ImageView(mContext);
-                    imageView.setLayoutParams(layoutParams);
-                    generalViewHolder.gridLayout.addView(imageView);
-
-                    Glide.with(mContext)
-                            .load(imageList.get(k))
-                            .placeholder(R.color.colorImagePlaceHolder)
-                            .centerCrop()
-                            .into(imageView);
-                }
-                k++;
-            }
-        }
-    }
     static class FriendCircleViewHolder extends RecyclerView.ViewHolder {
 
         FriendCircleViewHolder(View itemView) {
@@ -352,6 +341,9 @@ public class MomentAdapter
 
         GeneralViewHolder(View itemView) {
             super(itemView);
+            gridLayout.setRowCount(9);
+            gridLayout.setColumnCount(9);
+
         }
     }
 }

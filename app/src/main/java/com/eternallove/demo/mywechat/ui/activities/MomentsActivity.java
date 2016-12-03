@@ -1,7 +1,9 @@
 package com.eternallove.demo.mywechat.ui.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +12,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListAdapter;
+import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
 
 import com.eternallove.demo.mywechat.R;
+import com.eternallove.demo.mywechat.db.MyWeChatDB;
 import com.eternallove.demo.mywechat.modle.CommentBean;
 import com.eternallove.demo.mywechat.modle.GeneralBean;
 import com.eternallove.demo.mywechat.modle.HeadBean;
 import com.eternallove.demo.mywechat.modle.LikeBean;
 import com.eternallove.demo.mywechat.modle.LinkBean;
 import com.eternallove.demo.mywechat.ui.adapters.MomentAdapter;
+import com.eternallove.demo.mywechat.util.HttpHandler;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +38,7 @@ public class MomentsActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
     public static void actionStart(Context context){
         Intent intent=new Intent();
         intent.setClass(context,MomentsActivity.class);
@@ -41,7 +51,6 @@ public class MomentsActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
-
         MomentAdapter adapter = new MomentAdapter(this,
                 new HeadBean(
                         "http://img0.imgtn.bdimg.com/it/u=2075776712,3107953298&fm=21&gp=0.jpg",

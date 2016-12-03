@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/imageView_item_general_avatar"
-            android:layout_marginRight="@dimen/item_general_avatar_margin_right"
             tools:src="@mipmap/ic_launcher"
+            android:layout_marginRight="@dimen/item_general_avatar_margin_right"
             android:layout_width="@dimen/item_general_avatar_size"
             android:layout_height="@dimen/item_general_avatar_size"/>
 
@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imageView_item_general_avatar">
+            android:layout_toEndOf="@+id/imageView_item_general_avatar"
+            android:weightSum="1">
 
             <TextView
                 android:textColor="@color/colorGeneralName"
@@ -43,12 +44,21 @@
             <LinearLayout
                 android:id="@+id/linearLayout_item_link_content"
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/item_general_content_link_layout_height"
                 android:background="@color/background"
                 android:padding="@dimen/item_general_content_link_layout_padding"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/item_general_content_link_layout_marginTop">
+
+                android:layout_marginTop="@dimen/item_general_content_link_layout_marginTop"
+                android:layout_weight="0.02">
+
+                <ImageView
+                    android:layout_width="@dimen/item_general_content_link_image_SideLength"
+                    android:layout_height="@dimen/item_general_content_link_image_SideLength"
+                    android:layout_marginRight="@dimen/item_general_avatar_margin_right"
+                    tools:src="@mipmap/ic_launcher"
+                    android:id="@+id/imageView_item_link_img"
+                    />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -58,10 +68,6 @@
                     android:paddingLeft="@dimen/item_general_content_link_layout_padding"
                     android:gravity="center_vertical" />
 
-                <ImageView
-                    android:layout_width="@dimen/item_general_content_link_image_SideLength"
-                    android:layout_height="@dimen/item_general_content_link_image_SideLength"
-                    android:id="@+id/imageView_item_link_img"/>
             </LinearLayout>
 
             <GridLayout
@@ -83,13 +89,15 @@
                     android:layout_height="wrap_content"/>
 
                 <ImageView
-                    android:layout_alignParentRight="true"
                     android:src="@drawable/ic_tab_comment"
                     android:scaleType="fitXY"
                     android:id="@+id/imageButton_item_general_comment"
                     android:layout_marginRight="@dimen/item_general_comment_button_margin_right"
-                    android:layout_width="@dimen/item_general_comment_button_size_wight"
-                    android:layout_height="@dimen/item_general_comment_button_size_height" />
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_height="18dp"
+                    android:layout_width="30dp" />
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"

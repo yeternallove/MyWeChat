@@ -12,6 +12,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyWeChatOpenHelper extends SQLiteOpenHelper {
     /**
      *个人信息
+     * Json(data)
+     * {
+     * "id": "q2016",
+     * "name": "",
+     * "email": "eminem@gmail.com",
+     * "avatar": ""
+     * }
      */
     public static final String CREATE_USER = "create table User("
             + "id integer primary key autoincrement,"
@@ -25,18 +32,28 @@ public class MyWeChatOpenHelper extends SQLiteOpenHelper {
     public static final String CREATE_MOMENT = "create table Moment("
             + "id integer primary key autoincrement,"
             + "user_id integer,"
+            + "publish_date integer,"
             + "content text)";
+    /**
+     * 点赞
+     */
     public static final String CREATE_LIKE = "create table Like("
             + "id integer primary key autoincrement,"
             + "moment_id integer,"
             + "initiator_id integer,"
             + "recipient_id integer)";
+    /**
+     * 评论
+     */
     public static final String CREATE_COMMENT = "create table Comment("
             + "id integer primary key autoincrement,"
             + "moment_id integer,"
             + "initiator_id integer,"
             + "recipient_id integer,"
             + "content text)";
+    /**
+     * 联系人
+     */
     public static  final String CREATE_CONTACTS = "create table Content("
             + "id text primary key,"
             + "user_id integer,"
