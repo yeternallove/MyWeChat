@@ -75,9 +75,9 @@ public class ContactsFragment extends Fragment {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             myWeChatDB = MyWeChatDB.getInstance(getActivity());
-            // Making a request to url and getting response
+             //Making a request to url and getting response
 //            String jsonStr = sh.makeServiceCall(url);
-
+//
 //            Log.e(TAG, "Response from url: " + jsonStr);
 //
 //            if (jsonStr != null) {

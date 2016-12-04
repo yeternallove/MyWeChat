@@ -6,30 +6,22 @@ package com.eternallove.demo.mywechat.modle;
  * @date: 2016/11/20
  */
 public class ContactsBean {
-    String id;
-    int user_id;
-    String name;
-    String email;
-    String address;
-    String gender;
-    String mobile;
-    String home;
-    String office;
 
-    public String getId() {
-        return id;
-    }
+    private String id;
+    private String contact_id;
+    private String name;
+    private String avatar;
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getContact_id() {
+        return contact_id;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setContact_id(String contact_id) {
+        this.contact_id = contact_id;
     }
 
     public String getName() {
@@ -40,51 +32,11 @@ public class ContactsBean {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getHome() {
-        return home;
-    }
-
-    public void setHome(String home) {
-        this.home = home;
-    }
-
-    public String getOffice() {
-        return office;
-    }
-
-    public void setOffice(String office) {
-        this.office = office;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

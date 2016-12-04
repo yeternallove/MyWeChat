@@ -8,6 +8,7 @@ package com.eternallove.demo.mywechat.modle;
 public class LikeBean {
     private String username;
 
+    public LikeBean(){}
     public LikeBean(String username) {
         this.username = username;
     }

@@ -10,6 +10,8 @@ public class CommentBean {
     private String recipient_name;
     private String content;
 
+    public CommentBean(){};
+
     public CommentBean(String initiator_name, String recipient_name, String content) {
         this.initiator_name = initiator_name;
         this.recipient_name = recipient_name;

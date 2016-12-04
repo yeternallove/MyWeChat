@@ -22,7 +22,7 @@ import com.bumptech.glide.load.resource.SimpleResource;
 import com.eternallove.demo.mywechat.R;
 import com.eternallove.demo.mywechat.modle.AutoWrapLineLayout;
 import com.eternallove.demo.mywechat.modle.CommentBean;
-import com.eternallove.demo.mywechat.modle.GeneralBean;
+import com.eternallove.demo.mywechat.modle.MomentBean;
 import com.eternallove.demo.mywechat.modle.HeadBean;
 import com.eternallove.demo.mywechat.modle.LikeBean;
 import com.eternallove.demo.mywechat.modle.LinkBean;
@@ -45,18 +45,21 @@ public class MomentAdapter
 
     private static final int TYPE_HEAD = 0x0;
     private static final int TYPE_GENERAL = 0x1;
-
+    private static final int[] ICON_LIST = new int[]{R.drawable.ic_avatar_0,R.drawable.ic_avatar_1,
+            R.drawable.ic_avatar_2,R.drawable.ic_avatar_3,R.drawable.ic_avatar_4,R.drawable.ic_avatar_5,
+            R.drawable.ic_avatar_6,R.drawable.ic_avatar_7,R.drawable.ic_avatar_8,R.drawable.ic_avatar_9};;
+    private int ic_num = 0;
     private HeadBean mHeadBean;
-    private List<GeneralBean> mGeneralBeanList;
+    private List<MomentBean> mMomentBeanList;
 
     private Context mContext;
 
     public MomentAdapter(Context context,
                          HeadBean headBean,
-                         List<GeneralBean> generalBeanList) {
-        mHeadBean = headBean;
-        mGeneralBeanList = generalBeanList;
-        mContext = context;
+                         List<MomentBean> momentBeanList) {
+        this.mHeadBean = headBean;
+        this.mMomentBeanList = momentBeanList;
+        this.mContext = context;
     }
 
     @Override
@@ -79,40 +82,57 @@ public class MomentAdapter
     public void onBindViewHolder(FriendCircleViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEAD) {
             HeadViewHolder headViewHolder = (HeadViewHolder) holder;
-            Glide.with(mContext)
-                    .load(mHeadBean.getHeadAvatar())
-                    .placeholder(R.color.colorImagePlaceHolder)
-                    .into(headViewHolder.avatar);
-            Glide.with(mContext)
-                    .load(mHeadBean.getHeadBackground())
-                    .centerCrop()
-                    .placeholder(R.color.colorImagePlaceHolder)
-                    .into(headViewHolder.background);
+            if(mHeadBean.getHeadAvatar() == null){
+                headViewHolder.avatar.setImageResource(ICON_LIST[0]);
+            } else {
+                Glide.with(mContext)
+                        .load(mHeadBean.getHeadAvatar())
+                        .placeholder(R.color.colorImagePlaceHolder)
+                        .into(headViewHolder.avatar);
+            }
+            if(mHeadBean.getHeadBackground() == null){
+                headViewHolder.background.setImageResource(R.drawable.ic_background);
+            } else {
+                Glide.with(mContext)
+                        .load(mHeadBean.getHeadBackground())
+                        .centerCrop()
+                        .placeholder(R.color.colorImagePlaceHolder)
+                        .into(headViewHolder.background);
+            }
             headViewHolder.name.setText(mHeadBean.getHeadName());
         } else {
             GeneralViewHolder generalViewHolder = (GeneralViewHolder) holder;
-            GeneralBean generalBean = mGeneralBeanList.get(position - 1);
-            Glide.with(mContext)
-                    .load(Uri.parse(generalBean.getAvatar()))
-                    .placeholder(R.color.colorImagePlaceHolder)
-                    .into(generalViewHolder.avatar);
+            MomentBean momentBean = mMomentBeanList.get(position - 1);
+            if(momentBean.getAvatar() ==null){
+                generalViewHolder.avatar.setImageResource(ICON_LIST[position%10]);
+            } else {
+                Glide.with(mContext)
+                        .load(Uri.parse(momentBean.getAvatar()))
+                        .placeholder(R.color.colorImagePlaceHolder)
+                        .into(generalViewHolder.avatar);
+            }
             //填充用户名
-            generalViewHolder.name.setText(generalBean.getName());
+            generalViewHolder.name.setText(momentBean.getName());
             //填充用户发布信息
-            if(generalBean.getContent() != null){
-                generalViewHolder.content.setText(generalBean.getContent());
+            if(momentBean.getContent() != null){
+                generalViewHolder.content.setText(momentBean.getContent());
                 generalViewHolder.content.setVisibility(View.VISIBLE);
             } else {
                 generalViewHolder.content.setVisibility(View.GONE);
             }
             //填充用户发布的连接信息
-            if(generalBean.getLinkData()!=null){
-                final LinkBean linkData = generalBean.getLinkData();
-                Glide.with(mContext)
-                        .load(linkData.getLinkimg())
-                        .centerCrop()
-                        .placeholder(R.color.colorImagePlaceHolder)
-                        .into(generalViewHolder.linkimg);
+            if(momentBean.getLinkData()!=null){
+                final LinkBean linkData = momentBean.getLinkData();
+                if(linkData.getLinkimg()==null){
+                    generalViewHolder.linkimg.setImageResource(ICON_LIST[(position+1)%10]);
+                    generalViewHolder.linkimg.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                } else {
+                    Glide.with(mContext)
+                            .load(linkData.getLinkimg())
+                            .centerCrop()
+                            .placeholder(R.color.colorImagePlaceHolder)
+                            .into(generalViewHolder.linkimg);
+                }
                 generalViewHolder.linkTitle.setText(linkData.getLinktitle());
                 generalViewHolder.linkTitle.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -125,8 +145,8 @@ public class MomentAdapter
                 generalViewHolder.link.setVisibility(View.GONE);
             }
             //填充用户发布图片信息
-            if (generalBean.getImageList() != null && generalBean.getImageList().size() > 0) {
-                List<String> imageList = generalBean.getImageList();
+            if (momentBean.getImageList() != null && momentBean.getImageList().size() > 0) {
+                List<String> imageList = momentBean.getImageList();
                 generalViewHolder.gridLayout.removeAllViews();
 
                 int size = imageList.size();
@@ -222,9 +242,9 @@ public class MomentAdapter
             boolean isShowComentOrLike = false;
             generalViewHolder.like.removeAllViews();
             generalViewHolder.comment.removeAllViews();
-            if(generalBean.getLikeData()!= null) {
+            if(momentBean.getLikeData()!= null) {
                 generalViewHolder.like.setFillMode(AutoWrapLineLayout.MODE_WRAP_CONTENT);
-                for(LikeBean item : generalBean.getLikeData()) {
+                for(LikeBean item : momentBean.getLikeData()) {
                     View likeItem = LayoutInflater.from(mContext).inflate(R.layout.item_general_like, null);
                     TextView userName = (TextView) likeItem.findViewById(R.id.textView_item_general_like_username);
                     userName.setText(item.getUsername());
@@ -232,8 +252,8 @@ public class MomentAdapter
                 }
                 isShowComentOrLike = true;
             }
-            if(generalBean.getCommentData()!=null){
-                for(CommentBean item : generalBean.getCommentData()){
+            if(momentBean.getCommentData()!=null){
+                for(CommentBean item : momentBean.getCommentData()){
                     View commentItem = LayoutInflater.from(mContext).inflate(R.layout.item_general_comment, null);
                     TextView initiatorName = (TextView) commentItem.findViewById(R.id.textView_item_general_comment_initiatorName);
                     TextView reply = (TextView) commentItem.findViewById(R.id.textView_item_general_comment_1);
@@ -258,7 +278,7 @@ public class MomentAdapter
                 generalViewHolder.likeOrComment.setVisibility(View.GONE);
             }
             generalViewHolder.date
-                    .setText(DateUtil.getDateString(mContext, generalBean.getPublishDate()));
+                    .setText(DateUtil.getDateString(mContext, momentBean.getPublishDate()));
             generalViewHolder.commentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -274,7 +294,7 @@ public class MomentAdapter
 
     @Override
     public int getItemCount() {
-        return mGeneralBeanList.size() + 1;
+        return mMomentBeanList.size() + 1;
     }
 
     static class FriendCircleViewHolder extends RecyclerView.ViewHolder {
