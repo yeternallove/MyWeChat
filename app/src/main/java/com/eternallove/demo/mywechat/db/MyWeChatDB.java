@@ -130,18 +130,20 @@ public class MyWeChatDB {
     }
     public ArrayList<CommentBean> loadComment(String moment_id){
         ArrayList<CommentBean> commentData = new ArrayList<>();
-        String sql = "select c1.name,c2.name,c.content,c1.user_id,c1.contact_id" +
-                " from Comment c,Contacts c1,Contacts c2" +
-                " where c.initiator_id = c1.contact_id and c.recipient_id = c2.contact_id and c.moment_id = ?";
+        String sql = "select c1.name,c.name,c.content,c.initiator_id,c.recipient_id" +
+                " from ( select moment_id,initiator_id,recipient_id,name,content" +
+                " from Comment LEFT OUTER JOIN Contacts ON (Comment.recipient_id = Contacts.contact_id) ) AS c,Contacts c1 " +
+                " where c.initiator_id = c1.contact_id and c.moment_id = ?";
         CommentBean comment;
-        String contact_id;
+        String initiator_id;
+        String recipient_id;
         Cursor c = db.rawQuery(sql,new String[]{moment_id});
         while(c.moveToNext()){
-            String user_id = c.getString(3);
             comment = new CommentBean();
-            contact_id = c.getString(4);
-            comment.setInitiator_name(user_id == contact_id ? mcontext.getString(R.string.comment_me) :c.getString(0));
-            comment.setRecipient_name(user_id == contact_id ? mcontext.getString(R.string.comment_me) :c.getString(1));
+            initiator_id = c.getString(3);
+            recipient_id = c.getString(4);
+            comment.setInitiator_name("0".equals(initiator_id) ? mcontext.getString(R.string.comment_me) :c.getString(0));
+            comment.setRecipient_name("0".equals(recipient_id) ? mcontext.getString(R.string.comment_me) :c.getString(1));
             comment.setContent(c.getString(2));
             commentData.add(comment);
         }

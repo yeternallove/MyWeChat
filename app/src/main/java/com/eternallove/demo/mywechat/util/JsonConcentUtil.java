@@ -28,27 +28,37 @@ public class JsonConcentUtil {
         if (JsonConcent != null) {
             try {
                 JSONObject jsonObj = new JSONObject(JsonConcent);
-                this.mContent = jsonObj.getString("content");
-                if("".equals(this.mContent)) this.mContent = null;
-                JSONArray imageList = jsonObj.getJSONArray("imageList");
-                if(imageList != null) {
-                    ArrayList<String> mimageList = new ArrayList<>();
-                    for (int i = 0; i < imageList.length(); i++) {
-                        JSONObject img = imageList.getJSONObject(i);
-                        mimageList.add(img.getString("img"));
+                if(jsonObj.has("content")) {
+                    this.mContent = jsonObj.getString("content");
+                } else {
+                    this.mContent = null;
+                }
+                if(jsonObj.has("imageList")) {
+                    JSONArray imageList = jsonObj.getJSONArray("imageList");
+                    if (imageList != null && imageList.length() > 0) {
+                        ArrayList<String> mimageList = new ArrayList<>();
+                        for (int i = 0; i < imageList.length(); i++) {
+                            JSONObject img = imageList.getJSONObject(i);
+                            mimageList.add(img.getString("img"));
+                        }
+                        this.mImageList = mimageList;
+                    } else {
+                        this.mImageList = null;
                     }
-                    this.mImageList = mimageList;
                 } else {
                     this.mImageList = null;
                 }
-                JSONObject link = jsonObj.getJSONObject("link");
-                if(link==null || "".equals(link)){
-                    this.mLinkData = null;
-                } else {
+                if(jsonObj.has("link")) {
+                    JSONObject link = jsonObj.getJSONObject("link");
                     String url = link.getString("url");
-                    String lingkimg = link.getString("lingimg");
+                    String lingkimg = null;
+                    if(link.has("lingimg")){
+                        lingkimg = link.getString("lingimg");
+                    }
                     String linktitle = link.getString("linktitle");
-                    this.mLinkData = new LinkBean(url,lingkimg,linktitle);
+                    this.mLinkData = new LinkBean(url, lingkimg, linktitle);
+                } else {
+                    this.mLinkData = null;
                 }
             } catch (final JSONException e) {
                 Log.e(JsonConcentUtil.class.getName(), "Json parsing error: " + e.getMessage());

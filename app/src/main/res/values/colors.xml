@@ -12,4 +12,9 @@
     <color name="colorGeneralDate">#AAAAAA</color>
     <color name="colorImagePlaceHolder">#EEEEEE</color>
     <color name="colorTextName">#5b96b9</color>
+
+    <color name="colorSchemeColor_1">#00FFFF</color>
+    <color name="colorSchemeColor_2">#00BFFF</color>
+    <color name="colorSchemeColor_3">#1E90FF</color>
+    <color name="colorSchemeColor_4">#87CEFA</color>
 </resources>

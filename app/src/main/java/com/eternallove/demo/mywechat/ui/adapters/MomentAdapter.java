@@ -47,8 +47,8 @@ public class MomentAdapter
     private static final int TYPE_GENERAL = 0x1;
     private static final int[] ICON_LIST = new int[]{R.drawable.ic_avatar_0,R.drawable.ic_avatar_1,
             R.drawable.ic_avatar_2,R.drawable.ic_avatar_3,R.drawable.ic_avatar_4,R.drawable.ic_avatar_5,
-            R.drawable.ic_avatar_6,R.drawable.ic_avatar_7,R.drawable.ic_avatar_8,R.drawable.ic_avatar_9};;
-    private int ic_num = 0;
+            R.drawable.ic_avatar_6,R.drawable.ic_avatar_7,R.drawable.ic_avatar_8,R.drawable.ic_avatar_9};
+
     private HeadBean mHeadBean;
     private List<MomentBean> mMomentBeanList;
 
@@ -212,7 +212,7 @@ public class MomentAdapter
                                     .into(imageView);
                         } else {
                             // 否则就显示为一个方块
-                            layoutParams.width = (int) mContext.getResources()
+                            layoutParams.width = (int) mContext.getResources().get
                                     .getDimension(R.dimen.item_general_image_grid_image_size);
                             layoutParams.height = (int) mContext.getResources()
                                     .getDimension(R.dimen.item_general_image_grid_image_size);
@@ -226,7 +226,7 @@ public class MomentAdapter
                             generalViewHolder.gridLayout.addView(imageView);
 
                             Glide.with(mContext)
-                                    .load(imageList.get(k))
+                                    .load(Uri.parse(imageList.get(k)))
                                     .placeholder(R.color.colorImagePlaceHolder)
                                     .centerCrop()
                                     .into(imageView);
