@@ -212,7 +212,7 @@ public class MomentAdapter
                                     .into(imageView);
                         } else {
                             // 否则就显示为一个方块
-                            layoutParams.width = (int) mContext.getResources().get
+                            layoutParams.width = (int) mContext.getResources()
                                     .getDimension(R.dimen.item_general_image_grid_image_size);
                             layoutParams.height = (int) mContext.getResources()
                                     .getDimension(R.dimen.item_general_image_grid_image_size);

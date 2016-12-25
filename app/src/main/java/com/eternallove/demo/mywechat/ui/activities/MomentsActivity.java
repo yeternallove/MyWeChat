@@ -128,7 +128,8 @@ public class MomentsActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             headBean = myWeChatDB.loadHead("0");
-            momentBean = myWeChatDB.loadMoment("0");
+            momentBean.clear();
+            momentBean.addAll(myWeChatDB.loadMoment("0"));
             adapter.notifyDataSetChanged();
             mSwipeRefreshLayout.setRefreshing(false);
         }
